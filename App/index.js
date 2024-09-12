@@ -2,7 +2,7 @@
 // Combined code from all files
 
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, Button, View, ActivityIndicator } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 
 const API_URL = 'http://apihub.p.appply.xyz:3300/chatgpt';
@@ -40,7 +40,9 @@ export default function App() {
                     <Text style={styles.flirtSpruch}>{flirtSpruch}</Text>
                 )}
             </View>
-            <Button title="Neuer Flirtspruch" onPress={fetchFlirtSpruch} />
+            <TouchableOpacity style={styles.button} onPress={fetchFlirtSpruch}>
+                <Text style={styles.buttonText}>Neuer Flirtspruch</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 }
@@ -50,11 +52,13 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         backgroundColor: '#FFFFFF',
+        marginTop: 20, // Avoid overlap with status bar
     },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 20,
+        textAlign: 'center'
     },
     box: {
         padding: 20,
@@ -62,9 +66,23 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginBottom: 20,
         alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: 100,
     },
     flirtSpruch: {
         fontSize: 18,
         textAlign: 'center',
+    },
+    button: {
+        backgroundColor: '#6A0DAD',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 10,
+        alignItems: 'center',
+    },
+    buttonText: {
+        color: '#FFFFFF',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
 });
